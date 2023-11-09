@@ -5,6 +5,7 @@ from tkinter.tix import Tree
 from tokenize import Triple
 
 def get_inverted_double_pendulum_args(parser):
+    parser.add_argument('--project_name', default="plan-to-predict-InvertedDoublePendulum-v2"), 
     parser.add_argument('--env_name', default="InvertedDoublePendulum-v2",
                         help='Mujoco Gym environment (default: Hopper-v2)')
     parser.add_argument('--noisy', default=True)

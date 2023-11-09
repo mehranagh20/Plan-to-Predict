@@ -91,7 +91,7 @@ def train(args, env_sampler, predict_env, agent, env_pool, model_pool, env_pool_
                 logging.info("Step Reward: " + str(total_step) + " " + str(sum_reward))
                 print('EX: {}, step: {}, test_return: {}, seed: {}, FIX_ROLL_LEN: {}, STOP_TRAIN: {}, rollout_len: {}, cuda_num: {}'.format(args.experiment_name, total_step, sum_reward, args.seed, fix_rollout_length, STOPTRAIN, rollout_length, args.cuda_num))
                 if args.use_wandb:
-                    wandb.log({"test_return": sum_reward}, step=total_step)
+                    wandb.log({"test_return": sum_reward, 'eval_steps': eval_step}, step=total_step)
                     run_dir = str(wandb.run.dir) + '/' + args.experiment_name
                     if not os.path.exists(run_dir):
                         os.makedirs(run_dir)
@@ -386,7 +386,7 @@ def main(args=None):
         args = readParser()
     os.environ['CUDA_VISIBLE_DEVICES'] = args.cuda_num
     torch.set_num_threads(args.n_training_threads)
-    args.seed = torch.randint(0, 10000, (1,)).item()
+    # args.seed = torch.randint(0, 10000, (1,)).item()
     run_dir = Path(os.path.split(os.path.dirname(os.path.abspath(__file__)))[
                        0] + "/results") / args.env_name / args.experiment_name
 
@@ -413,9 +413,7 @@ def main(args=None):
         os.makedirs(str(run_dir))
     if args.use_wandb:
         run = wandb.init(config=args,
-                         project='RL-based model learning for model-based RL',
-                         entity=args.user_name,
-                         notes=socket.gethostname(),
+                         project=args.project_name,
                          name=str(args.experiment_name) +
                               "_{}_".format(args.cuda_num) + str(args.seed),
                          group=args.env_name,

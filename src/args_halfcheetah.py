@@ -5,6 +5,7 @@ from tkinter.tix import Tree
 from tokenize import Triple
 
 def get_halfcheetah_args(parser):
+    parser.add_argument('--project_name', default="plan-to-predict-HalfCheetah-v2"), 
     parser.add_argument('--env_name', default="HalfCheetah-v2",
                         help='Mujoco Gym environment (default: Hopper-v2)') # Walker2d, Ant, HalfCheetah, Humanoid, 
 

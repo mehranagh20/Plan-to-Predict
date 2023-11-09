@@ -5,6 +5,7 @@ from tkinter.tix import Tree
 from tokenize import Triple
 
 def get_ant_args(parser):
+    parser.add_argument('--project_name', default="plan-to-predict-Ant-v2"), 
     parser.add_argument('--env_name', default="Ant-v2",
                         help='Mujoco Gym environment (default: Hopper-v2)')
 

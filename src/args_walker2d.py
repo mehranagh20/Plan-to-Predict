@@ -5,6 +5,7 @@ from tokenize import Triple
 
 
 def get_walker2d_args(parser):
+    parser.add_argument('--project_name', default="plan-to-predict-Walker2d-v2"), 
     parser.add_argument('--env_name', default="Walker2d-v2",
                         help='Mujoco Gym environment (default: Hopper-v2)') # Walker2d, Ant, HalfCheetah, Humanoid, 
     parser.add_argument('--init_exploration_steps', type=int, default=5000, metavar='A',

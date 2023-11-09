@@ -137,6 +137,7 @@ class EnsembleModel(nn.Module):
         self.nn3 = EnsembleFC(hidden_size, hidden_size, ensemble_size, weight_decay=0.000075)
         self.nn4 = EnsembleFC(hidden_size, hidden_size, ensemble_size, weight_decay=0.000075)
         self.use_decay = use_decay
+        self.swish = Swish()
 
         self.output_dim = state_size + reward_size
         # Add variance output
