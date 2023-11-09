@@ -384,7 +384,6 @@ def main(args=None):
     from arguments import readParser
     if args is None:
         args = readParser()
-    os.environ['CUDA_VISIBLE_DEVICES'] = args.cuda_num
     torch.set_num_threads(args.n_training_threads)
     # args.seed = torch.randint(0, 10000, (1,)).item()
     run_dir = Path(os.path.split(os.path.dirname(os.path.abspath(__file__)))[
